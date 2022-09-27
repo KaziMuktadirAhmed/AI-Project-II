@@ -14,4 +14,20 @@ public class KnowledgeBase {
     public void updateVisitedWorldState(int cell_row, int cell_col, Cell new_cell) {
         this.world_state[cell_row][cell_col].copyCell(new_cell);
     }
+
+    private double calculateProbability(int cell_row, int cell_col) {
+        if(world_state[cell_row][cell_col].visited) {
+            if (world_state[cell_row][cell_col].safe)
+                return 0.0;
+            else
+                return 100.0;
+        }
+
+        double cell_probability = 0.0;
+        int count = 0;
+
+        
+
+        return cell_probability;
+    }
 }
