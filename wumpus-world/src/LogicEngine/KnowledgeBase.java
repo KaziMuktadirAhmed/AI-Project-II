@@ -3,7 +3,7 @@ package LogicEngine;
 public class KnowledgeBase {
     private final Cell[][] world_state = new Cell[10][10];
 
-    public KnowledgeBase (Cell[][] initial_world_state) {
+    public KnowledgeBase(Cell[][] initial_world_state) {
         for(int i=0; i<10; i++) {
             for (int j = 0; j < 10; j++) {
                 this.world_state[i][j].copyCell(initial_world_state[i][j]);
