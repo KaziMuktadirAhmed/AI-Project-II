@@ -84,8 +84,8 @@ public class Game {
                     line += "{ death,";
                     if (game_world[i][j].pit)       line += "pit,";
                     else                            line += "npt,";
-                    if (game_world[i][j].wumpus)    line += "wum,";
-                    else                            line += "nwm,";
+                    if (game_world[i][j].wumpus)    line += "wum";
+                    else                            line += "nwm";
                     line += " } ";
                 }
                 output += (line + "\n");
