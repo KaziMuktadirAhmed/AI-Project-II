@@ -21,10 +21,12 @@ public class Game {
                     case "s" -> game_world[row_count][col_count].safe = true;
                     case "g" -> game_world[row_count][col_count].gold = true;
                     case "p" -> {
+                        game_world[row_count][col_count].safe = false;
                         game_world[row_count][col_count].pit = true;
                         updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
                     }
                     case "w" -> {
+                        game_world[row_count][col_count].safe = false;
                         game_world[row_count][col_count].wumpus = true;
                         updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
                     }
