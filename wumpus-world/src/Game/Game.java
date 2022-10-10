@@ -83,7 +83,6 @@ public class Game {
                     else                        line += "nbr,";
                     if(game_world[i][j].stench) line += "stn";
                     else                        line += "nst";
-                    line += " } ";
                 }
                 else {
                     line += "{ death,";
@@ -91,12 +90,11 @@ public class Game {
                     else                            line += "npt,";
                     if (game_world[i][j].wumpus)    line += "wum";
                     else                            line += "nwm";
-                    line += " } ";
                 }
+                line += " } ";
             }
             output += (line + "\n");
         }
-//        System.out.println(output);
         FileWriter output_file = new FileWriter("output.txt");
         output_file.write(output);
         output_file.close();
