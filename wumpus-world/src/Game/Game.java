@@ -13,13 +13,28 @@ public class Game {
         File saved_world = new File("initial_world.txt");
         Scanner scan_file = new Scanner(saved_world);
         String[] line;
+        int row_count = 0;
         while (scan_file.hasNextLine()) {
             line = scan_file.nextLine().split(",");
-
+            for (int col_count=0; col_count< line.length; col_count++) {
+                if(line[col_count].toLowerCase().equals("s"))
+                    game_world[row_count][col_count].safe = true;
+                else if (line[col_count].toLowerCase().equals("g"))
+                    game_world[row_count][col_count].gold = true;
+                else if (line[col_count].toLowerCase().equals("p")) {
+                    game_world[row_count][col_count].pit = true;
+                    updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
+                }
+                else if (line[col_count].toLowerCase().equals("w")) {
+                    game_world[row_count][col_count].wumpus = true;
+                    updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
+                }
+            }
+            row_count++;
         }
     }
 
-    public void updateAdjecentCell(int row_num, int col_num, Cell cell) {
+    public void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(!cell.wumpus && !cell.pit) return;
         if(row_num > 0) {
             game_world[row_num - 1][col_num].stench = cell.wumpus;
