@@ -8,8 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+class Point{
+    public int x;
+    public int y;
+}
+
 public class Game {
     public Cell[][] game_world = new Cell[10][10];
+    Point player_position = new Point();
 
     public Game() throws FileNotFoundException {
         for (int i = 0; i < 10; i++) {
@@ -100,5 +106,58 @@ public class Game {
         output_file.close();
     }
 
-    
+    public void run() {
+        Scanner scan_inpt = new Scanner(System.in);
+        boolean run_game = true;
+        setInitialPosition();
+        while (run_game) {
+            showWorld();
+            System.out.print("Input move or type exit to exit: ");
+            String input = scan_inpt.next();
+            move(input);
+            if(input.equalsIgnoreCase("exit")) run_game = false;
+        }
+    }
+
+    private void setInitialPosition() {
+        player_position.x = 0;
+        player_position.y = 0;
+        game_world[player_position.y][player_position.x].visited = true;
+    }
+
+    private void move(String input) {
+        switch (input.toLowerCase()) {
+            case "up" -> {
+                if (player_position.y > 0) player_position.y--;
+            }
+            case "down" -> {
+                if (player_position.y < 9) player_position.y++;
+            }
+            case "left" -> {
+                if (player_position.x > 0) player_position.x--;
+            }
+            case "right" -> {
+                if (player_position.x < 9) player_position.x++;
+            }
+        }
+        game_world[player_position.y][player_position.x].visited = true;
+    }
+
+    private void showWorld () {
+        String output = "";
+        for (int i = 0; i < 10; i++) {
+            String line = "";
+            for (int j = 0; j < 10; j++) {
+                if(player_position.x == j && player_position.y == i) line += "A";
+                if(game_world[i][j].visited)    line += "1";
+                else                            line += "0";
+                if(game_world[i][j].wumpus)     line += "W";
+                else if (game_world[i][j].pit)  line += "P";
+                else                            line += "S";
+                line += " ";
+            }
+            output += (line + "\n");
+        }
+        System.out.print(output);
+    }
 }

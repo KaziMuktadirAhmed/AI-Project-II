@@ -13,5 +13,6 @@ public class MainClass {
     public static void test() throws IOException {
         Game game = new Game();
         game.printWorld();
+        game.run();
     }
 }
