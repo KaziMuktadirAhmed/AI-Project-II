@@ -21,23 +21,21 @@ public class Game {
 
     public void updateAdjecentCell(int row_num, int col_num, Cell cell) {
         if(!cell.wumpus && !cell.pit) return;
-        if(cell.wumpus || cell.pit) {
-            if(row_num > 0) {
-                game_world[row_num - 1][col_num].stench = cell.wumpus;
-                game_world[row_num - 1][col_num].breeze = cell.pit;
-            }
-            if(row_num < 9) {
-                game_world[row_num + 1][col_num].stench = cell.wumpus;
-                game_world[row_num + 1][col_num].breeze = cell.pit;
-            }
-            if(col_num > 0) {
-                game_world[row_num][col_num - 1].stench = cell.wumpus;
-                game_world[row_num][col_num - 1].breeze = cell.pit;
-            }
-            if(col_num > 0) {
-                game_world[row_num][col_num + 1].stench = cell.wumpus;
-                game_world[row_num][col_num + 1].breeze = cell.pit;
-            }
+        if(row_num > 0) {
+            game_world[row_num - 1][col_num].stench = cell.wumpus;
+            game_world[row_num - 1][col_num].breeze = cell.pit;
+        }
+        if(row_num < 9) {
+            game_world[row_num + 1][col_num].stench = cell.wumpus;
+            game_world[row_num + 1][col_num].breeze = cell.pit;
+        }
+        if(col_num > 0) {
+            game_world[row_num][col_num - 1].stench = cell.wumpus;
+            game_world[row_num][col_num - 1].breeze = cell.pit;
+        }
+        if(col_num > 0) {
+            game_world[row_num][col_num + 1].stench = cell.wumpus;
+            game_world[row_num][col_num + 1].breeze = cell.pit;
         }
     }
 }
