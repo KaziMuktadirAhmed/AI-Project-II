@@ -4,6 +4,8 @@ import LogicEngine.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Game {
@@ -29,7 +31,10 @@ public class Game {
             for (int col_count=0; col_count< line.length; col_count++) {
                 switch (line[col_count].toLowerCase()) {
                     case "s" -> game_world[row_count][col_count].safe = true;
-                    case "g" -> game_world[row_count][col_count].gold = true;
+                    case "g" -> {
+                        game_world[row_count][col_count].safe = true;
+                        game_world[row_count][col_count].gold = true;
+                    }
                     case "p" -> {
                         game_world[row_count][col_count].safe = false;
                         game_world[row_count][col_count].pit = true;
@@ -49,24 +54,24 @@ public class Game {
     private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(!cell.wumpus && !cell.pit) return;
         if(row_num > 0) {
-            game_world[row_num - 1][col_num].stench = cell.wumpus;
-            game_world[row_num - 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num - 1][col_num].stench = true;
+            if(cell.pit)    game_world[row_num - 1][col_num].breeze = true;
         }
         if(row_num < 9) {
-            game_world[row_num + 1][col_num].stench = cell.wumpus;
-            game_world[row_num + 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num + 1][col_num].stench = true;
+            if(cell.pit)    game_world[row_num + 1][col_num].breeze = true;
         }
         if(col_num > 0) {
-            game_world[row_num][col_num - 1].stench = cell.wumpus;
-            game_world[row_num][col_num - 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num - 1].stench = true;
+            if(cell.pit)    game_world[row_num][col_num - 1].breeze = true;
         }
         if(col_num < 9) {
-            game_world[row_num][col_num + 1].stench = cell.wumpus;
-            game_world[row_num][col_num + 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num + 1].stench = true;
+            if(cell.pit)    game_world[row_num][col_num + 1].breeze = true;
         }
     }
 
-    public void printWorld() {
+    public void printWorld() throws IOException {
         String output = "";
         for (int i=0; i<10; i++) {
             String line = "";
@@ -91,6 +96,9 @@ public class Game {
             }
             output += (line + "\n");
         }
-        System.out.println(output);
+//        System.out.println(output);
+        FileWriter output_file = new FileWriter("output.txt");
+        output_file.write(output);
+        output_file.close();
     }
 }
