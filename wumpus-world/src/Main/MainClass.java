@@ -2,7 +2,6 @@ package Main;
 
 import Game.Game;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class MainClass {
