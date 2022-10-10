@@ -14,10 +14,7 @@ public class KnowledgeBase {
             else
                 return 0.0;
         }
-
-        double cell_probability = calculateAvgProbability(cell_row, cell_col);
-
-        return cell_probability;
+        return calculateAvgProbability(cell_row, cell_col);
     }
 
     private double calculateAvgProbability(int cell_row, int cell_col) {
