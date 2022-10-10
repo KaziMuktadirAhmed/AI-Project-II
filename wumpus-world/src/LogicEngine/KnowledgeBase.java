@@ -15,6 +15,12 @@ public class KnowledgeBase {
                 return 0.0;
         }
 
+        double cell_probability = calculateAvgProbability(cell_row, cell_col);
+
+        return cell_probability;
+    }
+
+    private double calculateAvgProbability(int cell_row, int cell_col) {
         double cell_probability = 0.0;
         int count = 0;
 
@@ -29,16 +35,18 @@ public class KnowledgeBase {
         }
 
         if (cell_col > 0) {
-            cell_probability += memory[cell_row][cell_col-1].safetyProb;
+            cell_probability += memory[cell_row][cell_col -1].safetyProb;
             count++;
         }
 
         if(cell_col < 9) {
-            cell_probability += memory[cell_row][cell_col+1].safetyProb;
+            cell_probability += memory[cell_row][cell_col +1].safetyProb;
             count++;
         }
         cell_probability /= count;
-
         return cell_probability;
     }
+
+
+
 }
