@@ -12,6 +12,6 @@ public class MainClass {
 
     public static void test() throws FileNotFoundException {
         Game game = new Game();
-        game.loadWorld();
+        game.printWorld();
     }
 }

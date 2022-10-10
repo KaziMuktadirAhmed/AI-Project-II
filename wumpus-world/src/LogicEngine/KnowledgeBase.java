@@ -46,7 +46,4 @@ public class KnowledgeBase {
         cell_probability /= count;
         return cell_probability;
     }
-
-
-
 }

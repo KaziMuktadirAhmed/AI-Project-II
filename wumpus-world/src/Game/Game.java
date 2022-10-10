@@ -9,15 +9,17 @@ import java.util.Scanner;
 public class Game {
     public Cell[][] game_world = new Cell[10][10];
 
-    public Game() {
+    public Game() throws FileNotFoundException {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {
                 game_world[i][j] = new Cell();
             }
         }
+
+        loadWorld();
     }
 
-    public void loadWorld() throws FileNotFoundException {
+    private void loadWorld() throws FileNotFoundException {
         File saved_world = new File("initial_world.txt");
         Scanner scan_file = new Scanner(saved_world);
         String[] line;
@@ -44,7 +46,7 @@ public class Game {
         }
     }
 
-    public void updateAdjacentCell(int row_num, int col_num, Cell cell) {
+    private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(!cell.wumpus && !cell.pit) return;
         if(row_num > 0) {
             game_world[row_num - 1][col_num].stench = cell.wumpus;
@@ -61,6 +63,34 @@ public class Game {
         if(col_num < 9) {
             game_world[row_num][col_num + 1].stench = cell.wumpus;
             game_world[row_num][col_num + 1].breeze = cell.pit;
+        }
+    }
+
+    public void printWorld() {
+        String output = "";
+        for (int i=0; i<10; i++) {
+            String line = "";
+            for (int j=0; j<10; j++) {
+                if(game_world[i][j].safe) {
+                    line += "{ safe ,";
+                    if(game_world[i][j].gold)   line += "g,";
+                    if(game_world[i][j].breeze) line += "bre,";
+                    else                        line += "nbr,";
+                    if(game_world[i][j].stench) line += "stn";
+                    else                        line += "nst";
+                    line += " } ";
+                }
+                else {
+                    line += "{ death,";
+                    if (game_world[i][j].pit)       line += "pit,";
+                    else                            line += "npt,";
+                    if (game_world[i][j].wumpus)    line += "wum,";
+                    else                            line += "nwm,";
+                    line += " } ";
+                }
+                output += (line + "\n");
+            }
+            System.out.println(output);
         }
     }
 }
