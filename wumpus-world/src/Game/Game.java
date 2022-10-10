@@ -9,6 +9,14 @@ import java.util.Scanner;
 public class Game {
     public Cell[][] game_world = new Cell[10][10];
 
+    public Game() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                game_world[i][j] = new Cell();
+            }
+        }
+    }
+
     public void loadWorld() throws FileNotFoundException {
         File saved_world = new File("initial_world.txt");
         Scanner scan_file = new Scanner(saved_world);
@@ -50,7 +58,7 @@ public class Game {
             game_world[row_num][col_num - 1].stench = cell.wumpus;
             game_world[row_num][col_num - 1].breeze = cell.pit;
         }
-        if(col_num > 0) {
+        if(col_num < 9) {
             game_world[row_num][col_num + 1].stench = cell.wumpus;
             game_world[row_num][col_num + 1].breeze = cell.pit;
         }
