@@ -88,9 +88,9 @@ public class Game {
                     else                            line += "nwm";
                     line += " } ";
                 }
-                output += (line + "\n");
             }
-            System.out.println(output);
+            output += (line + "\n");
         }
+        System.out.println(output);
     }
 }
