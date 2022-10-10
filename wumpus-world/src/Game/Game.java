@@ -117,9 +117,11 @@ public class Game {
             move(input);
             if(input.equalsIgnoreCase("exit")) run_game = false;
             if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
+                showWorld();
                 System.out.println("DEATH");
                 run_game = false;
             } else if (game_world[player_position.y][player_position.x].gold) {
+                showWorld();
                 System.out.println("WIN");
                 run_game = false;
             }
