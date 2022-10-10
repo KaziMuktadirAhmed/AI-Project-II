@@ -116,7 +116,13 @@ public class Game {
             String input = scan_inpt.next();
             move(input);
             if(input.equalsIgnoreCase("exit")) run_game = false;
-
+            if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
+                System.out.println("DEATH");
+                run_game = false;
+            } else if (game_world[player_position.y][player_position.x].gold) {
+                System.out.println("WIN");
+                run_game = false;
+            }
         }
     }
 
