@@ -17,17 +17,17 @@ public class Game {
         while (scan_file.hasNextLine()) {
             line = scan_file.nextLine().split(",");
             for (int col_count=0; col_count< line.length; col_count++) {
-                if(line[col_count].toLowerCase().equals("s"))
-                    game_world[row_count][col_count].safe = true;
-                else if (line[col_count].toLowerCase().equals("g"))
-                    game_world[row_count][col_count].gold = true;
-                else if (line[col_count].toLowerCase().equals("p")) {
-                    game_world[row_count][col_count].pit = true;
-                    updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
-                }
-                else if (line[col_count].toLowerCase().equals("w")) {
-                    game_world[row_count][col_count].wumpus = true;
-                    updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
+                switch (line[col_count].toLowerCase()) {
+                    case "s" -> game_world[row_count][col_count].safe = true;
+                    case "g" -> game_world[row_count][col_count].gold = true;
+                    case "p" -> {
+                        game_world[row_count][col_count].pit = true;
+                        updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
+                    }
+                    case "w" -> {
+                        game_world[row_count][col_count].wumpus = true;
+                        updateAdjacentCell(row_count, col_count, game_world[row_count][col_count]);
+                    }
                 }
             }
             row_count++;
