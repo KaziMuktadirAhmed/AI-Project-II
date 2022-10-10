@@ -116,6 +116,7 @@ public class Game {
             String input = scan_inpt.next();
             move(input);
             if(input.equalsIgnoreCase("exit")) run_game = false;
+
         }
     }
 
@@ -153,6 +154,7 @@ public class Game {
                 else                            line += "0";
                 if(game_world[i][j].wumpus)     line += "W";
                 else if (game_world[i][j].pit)  line += "P";
+                else if (game_world[i][j].gold) line += "G";
                 else                            line += "S";
                 line += " ";
             }
