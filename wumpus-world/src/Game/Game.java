@@ -105,7 +105,7 @@ public class Game {
         output_file.close();
     }
 
-    public void run() {
+    public void run() throws IOException {
         Scanner scan_inpt = new Scanner(System.in);
         boolean run_game = true;
         setInitialPosition();
@@ -133,7 +133,7 @@ public class Game {
         game_world[player_position.y][player_position.x].visited = true;
     }
 
-    private void move(String input) {
+    private void move(String input) throws IOException {
         switch (input.toLowerCase()) {
             case "up" -> {
                 if (player_position.y > 0) player_position.y--;
@@ -152,6 +152,7 @@ public class Game {
                 System.out.print("Input direction: ");
                 if(shoot(scan_dir.next())){
                     System.out.println("Wumpus killed");
+                    printWorld();
                 }
             }
         }
@@ -165,7 +166,7 @@ public class Game {
                 if (player_position.y > 0) {
                     if(game_world[player_position.y-1][player_position.x].wumpus) {
                         game_world[player_position.y - 1][player_position.x].wumpus = false;
-                        game_world[player_position.y-1][player_position.x].safe = true;
+                        game_world[player_position.y - 1][player_position.x].safe = true;
                         updateAdjacentCell(player_position.y-1, player_position.x, game_world[player_position.y-1][player_position.x]);
                         did_kill = true;
                     }
