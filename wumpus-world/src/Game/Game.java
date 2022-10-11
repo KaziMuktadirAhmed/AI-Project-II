@@ -57,22 +57,29 @@ public class Game {
     }
 
     private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
-        if(!cell.wumpus && !cell.pit) return;
         if(row_num > 0) {
-            game_world[row_num - 1][col_num].stench = cell.wumpus;
-            game_world[row_num - 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num - 1][col_num].stench = true;
+            else            game_world[row_num - 1][col_num].stench = false;
+            if(cell.pit)    game_world[row_num - 1][col_num].breeze = true;
+            else            game_world[row_num - 1][col_num].breeze = false;
         }
         if(row_num < 9) {
-            game_world[row_num + 1][col_num].stench = cell.wumpus;
-            game_world[row_num + 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num + 1][col_num].stench = true;
+            else            game_world[row_num + 1][col_num].stench = false;
+            if(cell.pit)    game_world[row_num + 1][col_num].breeze = true;
+            else            game_world[row_num + 1][col_num].breeze = false;
         }
         if(col_num > 0) {
-            game_world[row_num][col_num - 1].stench = cell.wumpus;
-            game_world[row_num][col_num - 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num - 1].stench = true;
+            else            game_world[row_num][col_num - 1].stench = false;
+            if(cell.pit)    game_world[row_num][col_num - 1].breeze = true;
+            else            game_world[row_num][col_num - 1].breeze = false;
         }
         if(col_num < 9) {
-            game_world[row_num][col_num + 1].stench = cell.wumpus;
-            game_world[row_num][col_num + 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num + 1].stench = true;
+            else            game_world[row_num][col_num + 1].stench = false;
+            if(cell.pit)    game_world[row_num][col_num + 1].breeze = true;
+            else            game_world[row_num][col_num + 1].breeze = false;
         }
     }
 
@@ -167,6 +174,7 @@ public class Game {
                     if(game_world[player_position.y-1][player_position.x].wumpus) {
                         game_world[player_position.y - 1][player_position.x].wumpus = false;
                         game_world[player_position.y - 1][player_position.x].safe = true;
+                        System.out.println("row: " + (player_position.y-1) + " col: " + player_position.x);
                         updateAdjacentCell(player_position.y-1, player_position.x, game_world[player_position.y-1][player_position.x]);
                         did_kill = true;
                     }
@@ -177,6 +185,7 @@ public class Game {
                     if(game_world[player_position.y+1][player_position.x].wumpus) {
                         game_world[player_position.y + 1][player_position.x].wumpus = false;
                         game_world[player_position.y + 1][player_position.x].safe = true;
+                        System.out.println("row: " + (player_position.y+1) + " col: " + player_position.x);
                         updateAdjacentCell(player_position.y+1, player_position.x, game_world[player_position.y+1][player_position.x]);
                         did_kill = true;
                     }
@@ -187,6 +196,7 @@ public class Game {
                     if(game_world[player_position.y][player_position.x-1].wumpus) {
                         game_world[player_position.y][player_position.x - 1].wumpus = false;
                         game_world[player_position.y][player_position.x - 1].safe = true;
+                        System.out.println("row: " + (player_position.y) + " col: " + (player_position.x-1));
                         updateAdjacentCell(player_position.y, player_position.x-1, game_world[player_position.y][player_position.x-1]);
                         did_kill = true;
                     }
@@ -197,6 +207,7 @@ public class Game {
                     if(game_world[player_position.y][player_position.x+1].wumpus) {
                         game_world[player_position.y][player_position.x + 1].wumpus = false;
                         game_world[player_position.y][player_position.x + 1].safe = true;
+                        System.out.println("row: " + (player_position.y) + " col: " + (player_position.x+1));
                         updateAdjacentCell(player_position.y, player_position.x+1, game_world[player_position.y][player_position.x+1]);
                         did_kill = true;
                     }
@@ -212,7 +223,7 @@ public class Game {
             String line = "";
             for (int j = 0; j < 10; j++) {
                 if(player_position.x == j && player_position.y == i) line += "A";
-                if(game_world[i][j].visited)    line += "1";
+                if(game_world[i][j].visited)    line += "#";
                 else                            line += "0";
                 if(game_world[i][j].wumpus)     line += "W";
                 else if (game_world[i][j].pit)  line += "P";
