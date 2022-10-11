@@ -147,6 +147,11 @@ public class Game {
             case "right" -> {
                 if (player_position.x < 9) player_position.x++;
             }
+            case "shoot" -> {
+                Scanner scan_dir = new Scanner(System.in);
+                System.out.println("Input direction: ");
+                shoot(scan_dir.next());
+            }
         }
         game_world[player_position.y][player_position.x].visited = true;
     }
@@ -154,17 +159,36 @@ public class Game {
     private void shoot(String direction) {
         switch (direction.toLowerCase()) {
             case "up" -> {
-                if (player_position.y > 0)
-                    game_world[player_position.y-1][player_position.x].wumpus = false;
+                if (player_position.y > 0) {
+                    if(game_world[player_position.y-1][player_position.x].wumpus) {
+                        game_world[player_position.y - 1][player_position.x].wumpus = false;
+                        game_world[player_position.y-1][player_position.x].safe = true;
+                    }
+                }
             }
             case "down" -> {
-                if (player_position.y < 9) player_position.y++;
+                if (player_position.y < 9){
+                    if(game_world[player_position.y+1][player_position.x].wumpus) {
+                        game_world[player_position.y + 1][player_position.x].wumpus = false;
+                        game_world[player_position.y + 1][player_position.x].safe = true;
+                    }
+                }
             }
             case "left" -> {
-                if (player_position.x > 0) player_position.x--;
+                if (player_position.x > 0){
+                    if(game_world[player_position.y][player_position.x-1].wumpus) {
+                        game_world[player_position.y][player_position.x - 1].wumpus = false;
+                        game_world[player_position.y][player_position.x - 1].safe = true;
+                    }
+                } player_position.x--;
             }
             case "right" -> {
-                if (player_position.x < 9) player_position.x++;
+                if (player_position.x < 9){
+                    if(game_world[player_position.y][player_position.x+1].wumpus) {
+                        game_world[player_position.y][player_position.x + 1].wumpus = false;
+                        game_world[player_position.y][player_position.x + 1].safe = true;
+                    }
+                }
             }
         }
     }
