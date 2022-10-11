@@ -149,7 +149,7 @@ public class Game {
             }
             case "shoot" -> {
                 Scanner scan_dir = new Scanner(System.in);
-                System.out.println("Input direction: ");
+                System.out.print("Input direction: ");
                 if(shoot(scan_dir.next())){
                     System.out.println("Wumpus killed");
                 }
