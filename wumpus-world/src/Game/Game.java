@@ -23,7 +23,6 @@ public class Game {
                 game_world[i][j] = new Cell();
             }
         }
-
         loadWorld();
     }
 
