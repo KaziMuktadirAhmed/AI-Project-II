@@ -151,6 +151,24 @@ public class Game {
         game_world[player_position.y][player_position.x].visited = true;
     }
 
+    private void shoot(String direction) {
+        switch (direction.toLowerCase()) {
+            case "up" -> {
+                if (player_position.y > 0)
+                    game_world[player_position.y-1][player_position.x].wumpus = false;
+            }
+            case "down" -> {
+                if (player_position.y < 9) player_position.y++;
+            }
+            case "left" -> {
+                if (player_position.x > 0) player_position.x--;
+            }
+            case "right" -> {
+                if (player_position.x < 9) player_position.x++;
+            }
+        }
+    }
+
     private void showWorld () {
         String output = "";
         for (int i = 0; i < 10; i++) {
