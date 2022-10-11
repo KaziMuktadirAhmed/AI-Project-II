@@ -58,28 +58,20 @@ public class Game {
 
     private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(row_num > 0) {
-            if(cell.wumpus) game_world[row_num - 1][col_num].stench = true;
-            else            game_world[row_num - 1][col_num].stench = false;
-            if(cell.pit)    game_world[row_num - 1][col_num].breeze = true;
-            else            game_world[row_num - 1][col_num].breeze = false;
+            game_world[row_num - 1][col_num].stench = cell.wumpus;
+            game_world[row_num - 1][col_num].breeze = cell.pit;
         }
         if(row_num < 9) {
-            if(cell.wumpus) game_world[row_num + 1][col_num].stench = true;
-            else            game_world[row_num + 1][col_num].stench = false;
-            if(cell.pit)    game_world[row_num + 1][col_num].breeze = true;
-            else            game_world[row_num + 1][col_num].breeze = false;
+            game_world[row_num + 1][col_num].stench = cell.wumpus;
+            game_world[row_num + 1][col_num].breeze = cell.pit;
         }
         if(col_num > 0) {
-            if(cell.wumpus) game_world[row_num][col_num - 1].stench = true;
-            else            game_world[row_num][col_num - 1].stench = false;
-            if(cell.pit)    game_world[row_num][col_num - 1].breeze = true;
-            else            game_world[row_num][col_num - 1].breeze = false;
+            game_world[row_num][col_num - 1].stench = cell.wumpus;
+            game_world[row_num][col_num - 1].breeze = cell.pit;
         }
         if(col_num < 9) {
-            if(cell.wumpus) game_world[row_num][col_num + 1].stench = true;
-            else            game_world[row_num][col_num + 1].stench = false;
-            if(cell.pit)    game_world[row_num][col_num + 1].breeze = true;
-            else            game_world[row_num][col_num + 1].breeze = false;
+            game_world[row_num][col_num + 1].stench = cell.wumpus;
+            game_world[row_num][col_num + 1].breeze = cell.pit;
         }
     }
 
@@ -174,7 +166,6 @@ public class Game {
                     if(game_world[player_position.y-1][player_position.x].wumpus) {
                         game_world[player_position.y - 1][player_position.x].wumpus = false;
                         game_world[player_position.y - 1][player_position.x].safe = true;
-                        System.out.println("row: " + (player_position.y-1) + " col: " + player_position.x);
                         updateAdjacentCell(player_position.y-1, player_position.x, game_world[player_position.y-1][player_position.x]);
                         did_kill = true;
                     }
@@ -185,7 +176,6 @@ public class Game {
                     if(game_world[player_position.y+1][player_position.x].wumpus) {
                         game_world[player_position.y + 1][player_position.x].wumpus = false;
                         game_world[player_position.y + 1][player_position.x].safe = true;
-                        System.out.println("row: " + (player_position.y+1) + " col: " + player_position.x);
                         updateAdjacentCell(player_position.y+1, player_position.x, game_world[player_position.y+1][player_position.x]);
                         did_kill = true;
                     }
@@ -196,7 +186,6 @@ public class Game {
                     if(game_world[player_position.y][player_position.x-1].wumpus) {
                         game_world[player_position.y][player_position.x - 1].wumpus = false;
                         game_world[player_position.y][player_position.x - 1].safe = true;
-                        System.out.println("row: " + (player_position.y) + " col: " + (player_position.x-1));
                         updateAdjacentCell(player_position.y, player_position.x-1, game_world[player_position.y][player_position.x-1]);
                         did_kill = true;
                     }
@@ -207,7 +196,6 @@ public class Game {
                     if(game_world[player_position.y][player_position.x+1].wumpus) {
                         game_world[player_position.y][player_position.x + 1].wumpus = false;
                         game_world[player_position.y][player_position.x + 1].safe = true;
-                        System.out.println("row: " + (player_position.y) + " col: " + (player_position.x+1));
                         updateAdjacentCell(player_position.y, player_position.x+1, game_world[player_position.y][player_position.x+1]);
                         did_kill = true;
                     }
