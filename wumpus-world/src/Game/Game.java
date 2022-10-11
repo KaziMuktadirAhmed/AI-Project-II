@@ -150,19 +150,23 @@ public class Game {
             case "shoot" -> {
                 Scanner scan_dir = new Scanner(System.in);
                 System.out.println("Input direction: ");
-                shoot(scan_dir.next());
+                if(shoot(scan_dir.next())){
+                    System.out.println("Wumpus killed");
+                }
             }
         }
         game_world[player_position.y][player_position.x].visited = true;
     }
 
-    private void shoot(String direction) {
+    private boolean shoot(String direction) {
+        boolean did_kill = false;
         switch (direction.toLowerCase()) {
             case "up" -> {
                 if (player_position.y > 0) {
                     if(game_world[player_position.y-1][player_position.x].wumpus) {
                         game_world[player_position.y - 1][player_position.x].wumpus = false;
                         game_world[player_position.y-1][player_position.x].safe = true;
+                        did_kill = true;
                     }
                 }
             }
@@ -171,6 +175,7 @@ public class Game {
                     if(game_world[player_position.y+1][player_position.x].wumpus) {
                         game_world[player_position.y + 1][player_position.x].wumpus = false;
                         game_world[player_position.y + 1][player_position.x].safe = true;
+                        did_kill = true;
                     }
                 }
             }
@@ -179,18 +184,21 @@ public class Game {
                     if(game_world[player_position.y][player_position.x-1].wumpus) {
                         game_world[player_position.y][player_position.x - 1].wumpus = false;
                         game_world[player_position.y][player_position.x - 1].safe = true;
+                        did_kill = true;
                     }
-                } player_position.x--;
+                }
             }
             case "right" -> {
                 if (player_position.x < 9){
                     if(game_world[player_position.y][player_position.x+1].wumpus) {
                         game_world[player_position.y][player_position.x + 1].wumpus = false;
                         game_world[player_position.y][player_position.x + 1].safe = true;
+                        did_kill = true;
                     }
                 }
             }
         }
+        return did_kill;
     }
 
     private void showWorld () {
