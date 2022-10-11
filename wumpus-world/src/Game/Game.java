@@ -166,6 +166,7 @@ public class Game {
                     if(game_world[player_position.y-1][player_position.x].wumpus) {
                         game_world[player_position.y - 1][player_position.x].wumpus = false;
                         game_world[player_position.y-1][player_position.x].safe = true;
+                        updateAdjacentCell(player_position.y-1, player_position.x, game_world[player_position.y-1][player_position.x]);
                         did_kill = true;
                     }
                 }
@@ -175,6 +176,7 @@ public class Game {
                     if(game_world[player_position.y+1][player_position.x].wumpus) {
                         game_world[player_position.y + 1][player_position.x].wumpus = false;
                         game_world[player_position.y + 1][player_position.x].safe = true;
+                        updateAdjacentCell(player_position.y+1, player_position.x, game_world[player_position.y+1][player_position.x]);
                         did_kill = true;
                     }
                 }
@@ -184,6 +186,7 @@ public class Game {
                     if(game_world[player_position.y][player_position.x-1].wumpus) {
                         game_world[player_position.y][player_position.x - 1].wumpus = false;
                         game_world[player_position.y][player_position.x - 1].safe = true;
+                        updateAdjacentCell(player_position.y, player_position.x-1, game_world[player_position.y][player_position.x-1]);
                         did_kill = true;
                     }
                 }
@@ -193,6 +196,7 @@ public class Game {
                     if(game_world[player_position.y][player_position.x+1].wumpus) {
                         game_world[player_position.y][player_position.x + 1].wumpus = false;
                         game_world[player_position.y][player_position.x + 1].safe = true;
+                        updateAdjacentCell(player_position.y, player_position.x+1, game_world[player_position.y][player_position.x+1]);
                         did_kill = true;
                     }
                 }
