@@ -59,20 +59,20 @@ public class Game {
     private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(!cell.wumpus && !cell.pit) return;
         if(row_num > 0) {
-            if(cell.wumpus) game_world[row_num - 1][col_num].stench = true;
-            if(cell.pit)    game_world[row_num - 1][col_num].breeze = true;
+            game_world[row_num - 1][col_num].stench = cell.wumpus;
+            game_world[row_num - 1][col_num].breeze = cell.pit;
         }
         if(row_num < 9) {
-            if(cell.wumpus) game_world[row_num + 1][col_num].stench = true;
-            if(cell.pit)    game_world[row_num + 1][col_num].breeze = true;
+            game_world[row_num + 1][col_num].stench = cell.wumpus;
+            game_world[row_num + 1][col_num].breeze = cell.pit;
         }
         if(col_num > 0) {
-            if(cell.wumpus) game_world[row_num][col_num - 1].stench = true;
-            if(cell.pit)    game_world[row_num][col_num - 1].breeze = true;
+            game_world[row_num][col_num - 1].stench = cell.wumpus;
+            game_world[row_num][col_num - 1].breeze = cell.pit;
         }
         if(col_num < 9) {
-            if(cell.wumpus) game_world[row_num][col_num + 1].stench = true;
-            if(cell.pit)    game_world[row_num][col_num + 1].breeze = true;
+            game_world[row_num][col_num + 1].stench = cell.wumpus;
+            game_world[row_num][col_num + 1].breeze = cell.pit;
         }
     }
 
