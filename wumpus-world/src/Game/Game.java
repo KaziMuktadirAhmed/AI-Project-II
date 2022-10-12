@@ -149,10 +149,7 @@ public class Game {
             case "shoot" -> {
                 Scanner scan_dir = new Scanner(System.in);
                 System.out.print("Input direction: ");
-                if(shoot(scan_dir.next())){
-                    System.out.println("Wumpus killed");
-                    printWorld();
-                }
+                if(shoot(scan_dir.next())) System.out.println("Wumpus killed");
             }
         }
         game_world[player_position.y][player_position.x].visited = true;
