@@ -15,6 +15,10 @@ public class KnowledgeBase {
                 memory[i][j] = new Cell();
     }
 
+    public Cell getCurrentCell() {
+        return memory[current_position.y][current_position.x];
+    }
+
     public void updateCurrentPosition(int row_num, int col_num) {
         current_position.x = col_num;
         current_position.y = row_num;
@@ -42,13 +46,11 @@ public class KnowledgeBase {
 
     private void updateAdjacentCellsProbability() {
         Cell current_cell = memory[current_position.y][current_position.x];
-
-        if(!current_cell.breeze && !current_cell.stench)
-            allSafeCellAdjacent();
-        if(current_cell.stench)
-            currentCellStench();
-        if(current_cell.breeze)
-            currentCellBreeze();
+        if(!current_cell.breeze && !current_cell.stench) allSafeCellAdjacent();
+        if(current_cell.stench)                          currentCellStench();
+        else                                             noStenchCurrentCell();
+        if(current_cell.breeze)                          currentCellBreeze();
+        else                                             noBreezeCurrentCell();
     }
 
     private void allSafeCellAdjacent() {
@@ -60,6 +62,52 @@ public class KnowledgeBase {
             memory[current_position.y][current_position.x-1].safe = true;
         if(current_position.x < 9)
             memory[current_position.y][current_position.x+1].safe = true;
+    }
+
+    private void noStenchCurrentCell() {
+        if(current_position.y > 0) {
+            memory[current_position.y - 1][current_position.x].wumpus = false;
+            memory[current_position.y - 1][current_position.x].wumpusProb = 0.0;
+            memory[current_position.y - 1][current_position.x].updateSafety();
+        }
+        if(current_position.y < 9) {
+            memory[current_position.y + 1][current_position.x].wumpus = false;
+            memory[current_position.y + 1][current_position.x].wumpusProb = 0.0;
+            memory[current_position.y + 1][current_position.x].updateSafety();
+        }
+        if(current_position.x > 0){
+            memory[current_position.y][current_position.x - 1].wumpus = false;
+            memory[current_position.y][current_position.x - 1].wumpusProb = 0.0;
+            memory[current_position.y][current_position.x - 1].updateSafety();
+        }
+        if(current_position.x < 9){
+            memory[current_position.y][current_position.x + 1].wumpus = false;
+            memory[current_position.y][current_position.x + 1].wumpusProb = 0.0;
+            memory[current_position.y][current_position.x + 1].updateSafety();
+        }
+    }
+
+    private void noBreezeCurrentCell() {
+        if(current_position.y > 0) {
+            memory[current_position.y - 1][current_position.x].pit = false;
+            memory[current_position.y - 1][current_position.x].pitProb = 0.0;
+            memory[current_position.y - 1][current_position.x].updateSafety();
+        }
+        if(current_position.y < 9) {
+            memory[current_position.y + 1][current_position.x].pit = false;
+            memory[current_position.y + 1][current_position.x].pitProb = 0.0;
+            memory[current_position.y + 1][current_position.x].updateSafety();
+        }
+        if(current_position.x > 0){
+            memory[current_position.y][current_position.x - 1].pit = false;
+            memory[current_position.y][current_position.x - 1].pitProb = 0.0;
+            memory[current_position.y][current_position.x - 1].updateSafety();
+        }
+        if(current_position.x < 9){
+            memory[current_position.y][current_position.x + 1].pit = false;
+            memory[current_position.y][current_position.x + 1].pitProb = 0.0;
+            memory[current_position.y][current_position.x + 1].updateSafety();
+        }
     }
 
     private void currentCellStench() {
