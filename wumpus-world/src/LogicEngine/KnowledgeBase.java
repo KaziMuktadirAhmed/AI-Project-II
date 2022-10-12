@@ -24,6 +24,25 @@ public class KnowledgeBase {
         this.memory[current_position.y][current_position.x].copyCell(new_cell);
     }
 
+    private void updateAdjacentCells() {
+        Cell current_cell = memory[current_position.y][current_position.x];
+
+        if(!current_cell.breeze && !current_cell.stench)
+            allSafeCellAdjacent();
+
+    }
+
+    private void allSafeCellAdjacent() {
+        if(current_position.y > 0)
+            memory[current_position.y-1][current_position.x].safe = true;
+        if(current_position.y < 9)
+            memory[current_position.y+1][current_position.x].safe = true;
+        if(current_position.x > 0)
+            memory[current_position.y][current_position.x-1].safe = true;
+        if(current_position.y < 9)
+            memory[current_position.y][current_position.x+1].safe = true;
+    }
+
     private double calculateSafetyProbability(int cell_row, int cell_col) {
         if(memory[cell_row][cell_col].visited) {
             if (memory[cell_row][cell_col].safe) return 100.0;
