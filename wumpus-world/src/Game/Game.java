@@ -112,9 +112,10 @@ public class Game {
         while (run_game) {
             showWorld();
             ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
-            System.out.print("Input move or type exit to exit: ");
+            String ai_move = ai.decideMove();
+            System.out.println("Ai move: " + ai_move);
             String input = scan_inpt.next();
-            move(input);
+            move(ai_move);
             if(input.equalsIgnoreCase("exit")) run_game = false;
             if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
                 showWorld();
