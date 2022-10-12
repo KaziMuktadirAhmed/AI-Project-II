@@ -9,15 +9,12 @@ public class AI {
 
     public void observe(int row_num, int col_num, Cell visited_cell) {
         kb.updateCurrentPosition(row_num, col_num);
-        kb.updateVisitedWorldState(row_num, col_num, visited_cell);
-
+        kb.updateVisitedWorldState(visited_cell);
     }
 
-    private void inferCell(Cell cell) {
-
+    private void inferCell() {
+        
     }
 
     public void decideMove() {}
-
-
 }

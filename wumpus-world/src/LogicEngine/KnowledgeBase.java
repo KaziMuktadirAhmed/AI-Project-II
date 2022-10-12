@@ -6,7 +6,7 @@ class Point{
 }
 
 public class KnowledgeBase {
-    public final Cell[][] memory = new Cell[10][10];
+    public Cell[][] memory = new Cell[10][10];
     public Point current_position = new Point();
 
     public void updateCurrentPosition(int row_num, int col_num) {
@@ -14,16 +14,14 @@ public class KnowledgeBase {
         current_position.y = row_num;
     }
 
-    public void updateVisitedWorldState(int cell_row, int cell_col, Cell new_cell) {
-        this.memory[cell_row][cell_col].copyCell(new_cell);
+    public void updateVisitedWorldState(Cell new_cell) {
+        this.memory[current_position.y][current_position.x].copyCell(new_cell);
     }
 
     private double calculateSafetyProbability(int cell_row, int cell_col) {
         if(memory[cell_row][cell_col].visited) {
-            if (memory[cell_row][cell_col].safe)
-                return 100.0;
-            else
-                return 0.0;
+            if (memory[cell_row][cell_col].safe) return 100.0;
+            else                                 return 0.0;
         }
         return calculateAvgProbability(cell_row, cell_col);
     }
