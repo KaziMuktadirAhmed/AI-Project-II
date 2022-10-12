@@ -115,38 +115,38 @@ public class KnowledgeBase {
     }
 
     private void currentCellStench() {
-        if(current_position.y > 0) {
+        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited) {
             memory[current_position.y - 1][current_position.x].wumpusProb += 12.5;
             memory[current_position.y - 1][current_position.x].updateSafety();
         }
-        if(current_position.y < 9){
+        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited){
             memory[current_position.y + 1][current_position.x].wumpusProb += 12.5;
             memory[current_position.y + 1][current_position.x].updateSafety();
         }
-        if(current_position.x > 0){
+        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited){
             memory[current_position.y][current_position.x - 1].wumpusProb += 12.5;
             memory[current_position.y][current_position.x - 1].updateSafety();
         }
-        if(current_position.x < 9){
+        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited){
             memory[current_position.y][current_position.x + 1].wumpusProb += 12.5;
             memory[current_position.y][current_position.x + 1].updateSafety();
         }
     }
 
     private void currentCellBreeze() {
-        if(current_position.y > 0) {
+        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited) {
             memory[current_position.y - 1][current_position.x].pitProb += 12.5;
             memory[current_position.y - 1][current_position.x].updateSafety();
         }
-        if(current_position.y < 9){
+        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited){
             memory[current_position.y + 1][current_position.x].pitProb += 12.5;
             memory[current_position.y + 1][current_position.x].updateSafety();
         }
-        if(current_position.x > 0){
+        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited){
             memory[current_position.y][current_position.x - 1].pitProb += 12.5;
             memory[current_position.y][current_position.x - 1].updateSafety();
         }
-        if(current_position.x < 9){
+        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited){
             memory[current_position.y][current_position.x + 1].pitProb += 12.5;
             memory[current_position.y][current_position.x + 1].updateSafety();
         }
