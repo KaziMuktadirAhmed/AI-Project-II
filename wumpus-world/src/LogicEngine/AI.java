@@ -13,6 +13,7 @@ public class AI {
     }
 
     private void infer() {
+        Point position = kb.current_position;
 
     }
 
