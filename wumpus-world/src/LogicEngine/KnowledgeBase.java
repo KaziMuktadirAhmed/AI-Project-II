@@ -10,11 +10,9 @@ public class KnowledgeBase {
     public Point current_position = new Point();
 
     public KnowledgeBase() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
+        for (int i = 0; i < 10; i++)
+            for (int j = 0; j < 10; j++)
                 memory[i][j] = new Cell();
-            }
-        }
     }
 
     public void updateCurrentPosition(int row_num, int col_num) {
