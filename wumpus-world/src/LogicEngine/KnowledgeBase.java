@@ -19,6 +19,10 @@ public class KnowledgeBase {
         return memory[current_position.y][current_position.x];
     }
 
+    public Cell getCell(int row_num, int col_num) {
+        return memory[row_num][col_num];
+    }
+
     public void updateCurrentPosition(int row_num, int col_num) {
         current_position.x = col_num;
         current_position.y = row_num;
