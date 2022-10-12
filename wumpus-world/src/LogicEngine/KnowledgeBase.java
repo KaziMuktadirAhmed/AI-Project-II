@@ -22,6 +22,14 @@ public class KnowledgeBase {
 
     public void updateVisitedWorldState(Cell new_cell) {
         this.memory[current_position.y][current_position.x].copyCell(new_cell);
+        updateCurrentCellSafetyProbability();
+    }
+
+    private void updateCurrentCellSafetyProbability() {
+        if (memory[current_position.y][current_position.x].safe)
+            memory[current_position.y][current_position.x].safetyProb = 100.0;
+        else
+            memory[current_position.y][current_position.x].safetyProb = 0.0;
     }
 
     private void updateAdjacentCells() {
@@ -41,14 +49,6 @@ public class KnowledgeBase {
             memory[current_position.y][current_position.x-1].safe = true;
         if(current_position.y < 9)
             memory[current_position.y][current_position.x+1].safe = true;
-    }
-
-    private double calculateSafetyProbability(int cell_row, int cell_col) {
-        if(memory[cell_row][cell_col].visited) {
-            if (memory[cell_row][cell_col].safe) return 100.0;
-            else                                 return 0.0;
-        }
-        return calculateAvgProbability(cell_row, cell_col);
     }
 
     private double calculateAvgProbability(int cell_row, int cell_col) {
