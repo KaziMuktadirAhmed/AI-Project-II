@@ -53,6 +53,10 @@ public class KnowledgeBase {
             memory[current_position.y][current_position.x+1].safe = true;
     }
 
+    private void currentCellStench() {
+
+    }
+
     private double calculateAvgProbability(int cell_row, int cell_col) {
         double cell_probability = 0.0;
         int count = 0;
