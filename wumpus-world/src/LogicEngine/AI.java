@@ -33,10 +33,37 @@ public class AI {
         Cell current_cell = kb.getCurrentCell();
 
         if(kb.current_position.y > 0) {
-
+            Cell neighbour = kb.getCell(kb.current_position.y-1,kb.current_position.x);
+            if(calculateScore(neighbour) > predicted_score) {
+                predicted_score = calculateScore(neighbour);
+                decision = "UP";
+            }
         }
 
-//        if()
+        if(kb.current_position.y < 9) {
+            Cell neighbour = kb.getCell(kb.current_position.y+1,kb.current_position.x);
+            if(calculateScore(neighbour) > predicted_score) {
+                predicted_score = calculateScore(neighbour);
+                decision = "DOWN";
+            }
+        }
+
+        if(kb.current_position.x > 0) {
+            Cell neighbour = kb.getCell(kb.current_position.y,kb.current_position.x-1);
+            if(calculateScore(neighbour) > predicted_score) {
+                predicted_score = calculateScore(neighbour);
+                decision = "LEFT";
+            }
+        }
+
+        if(kb.current_position.y < 9) {
+            Cell neighbour = kb.getCell(kb.current_position.y,kb.current_position.x+1);
+            if(calculateScore(neighbour) > predicted_score) {
+                predicted_score = calculateScore(neighbour);
+                decision = "RIGHT";
+            }
+        }
+        
         return decision;
     }
 
