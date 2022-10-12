@@ -15,7 +15,16 @@ public class AI {
     private void infer() {
         Point position = kb.current_position;
 
+        if(position.y > 0) {
+
+        }
+        if(position.y < 9) {}
+        if(position.x > 0) {}
+        if(position.x < 9) {}
+
     }
+
+//    private void inferForWump
 
     public void decideMove() {}
 }
