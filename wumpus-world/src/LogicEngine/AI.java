@@ -69,9 +69,13 @@ public class AI {
 
     private int calculateScore(Cell cell) {
         int score = this.score;
-        if(cell.gold)                     score += 100000;
-        else if (cell.wumpus || cell.pit) score -= 1000;
-        else if (cell.safe)               score -= 1;
+        if(cell.visited) {
+            if (cell.gold) score += 100000;
+            else if (cell.wumpus || cell.pit) score -= 1000;
+            else if (cell.safe) score -= 1;
+        } else {
+            
+        }
         return score;
     }
 }
