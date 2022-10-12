@@ -27,9 +27,17 @@ public class AI {
 
     }
 
-    public void decideMove() {
+    public String decideMove() {
+        String decision = "";
+        int predicted_score = Integer.MIN_VALUE;
         Cell current_cell = kb.getCurrentCell();
 
+        if(kb.current_position.y > 0) {
+
+        }
+
+//        if()
+        return decision;
     }
 
     private int calculateScore(Cell cell) {
