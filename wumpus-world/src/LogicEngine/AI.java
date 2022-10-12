@@ -14,7 +14,16 @@ public class AI {
 
     public void observe(int row_num, int col_num, Cell visited_cell) {
         kb.updateCurrentPosition(row_num, col_num);
+        updateScore(visited_cell);
         kb.updateVisitedWorldState(visited_cell);
+    }
+
+    private void updateScore(Cell cell) {
+        Cell memory = kb.getCurrentCell();
+        if(memory.visited)          this.score -= 1;
+        else                        this.score += 1;
+        if(cell.gold)               this.score = Integer.MAX_VALUE;
+        if(cell.pit || cell.wumpus) this.score = Integer.MIN_VALUE;
     }
 
     public String decideMove() {
@@ -59,11 +68,14 @@ public class AI {
     private int calculateScore(Cell cell) {
         int score = this.score;
         if(cell.visited) {
-            if (cell.gold) score += Integer.MAX_VALUE;
-            else if (cell.wumpus || cell.pit) score -= 1000;
+            if (cell.gold) score = Integer.MAX_VALUE;
+            else if (cell.wumpus || cell.pit) score = Integer.MIN_VALUE;
             else if (cell.safe) score -= 1;
         } else {
             if (cell.safe) score += 1;
+            else {
+
+            }
         }
         return score;
     }
