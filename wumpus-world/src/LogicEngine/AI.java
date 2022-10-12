@@ -2,7 +2,7 @@ package LogicEngine;
 
 public class AI {
     private final KnowledgeBase kb;
-    private int score = 100;
+    private int score = 100; // Initial score
 
     public AI () {
         this.kb = new KnowledgeBase();
