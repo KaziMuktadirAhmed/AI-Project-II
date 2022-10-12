@@ -37,7 +37,9 @@ public class KnowledgeBase {
 
         if(!current_cell.breeze && !current_cell.stench)
             allSafeCellAdjacent();
+        if(current_cell.stench) {
 
+        }
     }
 
     private void allSafeCellAdjacent() {
