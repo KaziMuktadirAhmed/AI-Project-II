@@ -1,7 +1,18 @@
 package LogicEngine;
 
+class Point{
+    public int x;
+    public int y;
+}
+
 public class KnowledgeBase {
-    private final Cell[][] memory = new Cell[10][10];
+    public final Cell[][] memory = new Cell[10][10];
+    public Point current_position = new Point();
+
+    public void updateCurrentPosition(int row_num, int col_num) {
+        current_position.x = col_num;
+        current_position.y = row_num;
+    }
 
     public void updateVisitedWorldState(int cell_row, int cell_col, Cell new_cell) {
         this.memory[cell_row][cell_col].copyCell(new_cell);

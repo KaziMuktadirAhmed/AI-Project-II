@@ -16,6 +16,7 @@ class Point{
 public class Game {
     public Cell[][] game_world = new Cell[10][10];
     Point player_position = new Point();
+    AI ai = new AI();
 
     public Game() throws FileNotFoundException {
         for (int i = 0; i < 10; i++) {
