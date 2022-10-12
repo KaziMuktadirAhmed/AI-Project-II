@@ -9,6 +9,14 @@ public class KnowledgeBase {
     public Cell[][] memory = new Cell[10][10];
     public Point current_position = new Point();
 
+    public KnowledgeBase() {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                memory[i][j] = new Cell();
+            }
+        }
+    }
+
     public void updateCurrentPosition(int row_num, int col_num) {
         current_position.x = col_num;
         current_position.y = row_num;

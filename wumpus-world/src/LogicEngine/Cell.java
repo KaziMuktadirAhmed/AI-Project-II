@@ -8,7 +8,7 @@ public class Cell {
     public boolean wumpus = false;
     public boolean pit = false;
     public boolean gold = false;
-    public double safetyProb = - 1.0;
+    public double safetyProb = 50.0;
 
     public void copyCell(Cell c) {
         this.visited = c.visited;
