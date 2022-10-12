@@ -73,9 +73,7 @@ public class AI {
             else if (cell.safe) score -= 1;
         } else {
             if (cell.safe) score += 1;
-            else {
-
-            }
+            else           score -= (100 - cell.safetyProb);
         }
         return score;
     }
