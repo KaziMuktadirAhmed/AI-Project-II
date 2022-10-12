@@ -20,7 +20,6 @@ public class Cell {
         this.wumpus = c.wumpus;
         this.pit = c.pit;
         this.gold = c.gold;
-        this.safetyProb = c.safetyProb;
     }
 
     public void updateSafety() {
