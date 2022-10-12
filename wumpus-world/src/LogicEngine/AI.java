@@ -2,6 +2,8 @@ package LogicEngine;
 
 public class AI {
     private final KnowledgeBase kb;
+    private Cell currrent_cell;
+    private int score = 0;
 
     public AI () {
         this.kb = new KnowledgeBase();
@@ -15,18 +17,28 @@ public class AI {
     private void infer() {
         Point position = kb.current_position;
 
-        if(position.y > 0) {
-
-        }
+        if(position.y > 0) {}
         if(position.y < 9) {}
         if(position.x > 0) {}
         if(position.x < 9) {}
 
     }
 
-//    private void inferForWump
+    private void inferForWumpus(Point position) {
 
-    public void decideMove() {}
+    }
+
+    public void decideMove(Cell cell) {
+
+    }
+
+    private int calculateScore(Cell cell) {
+        int score = this.score;
+        if(cell.gold)                     score += 1000;
+        else if (cell.wumpus || cell.pit) score -= 1000;
+        else if (cell.safe)               score -= 1;
+        return score;
+    }
 }
 
 
