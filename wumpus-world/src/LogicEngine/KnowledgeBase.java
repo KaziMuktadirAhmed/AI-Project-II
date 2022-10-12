@@ -23,16 +23,24 @@ public class KnowledgeBase {
     public void updateVisitedWorldState(Cell new_cell) {
         this.memory[current_position.y][current_position.x].copyCell(new_cell);
         updateCurrentCellSafetyProbability();
+        updateAdjacentCellsProbability();
     }
 
     private void updateCurrentCellSafetyProbability() {
         if (memory[current_position.y][current_position.x].safe)
             memory[current_position.y][current_position.x].safetyProb = 100.0;
-        else
-            memory[current_position.y][current_position.x].safetyProb = 0.0;
+        else if(memory[current_position.y][current_position.x].wumpus){
+            memory[current_position.y][current_position.x].wumpusProb = 100.0;
+            memory[current_position.y][current_position.x].pitProb = 0;
+            memory[current_position.y][current_position.x].updateSafety();
+        } else if (memory[current_position.y][current_position.x].pit) {
+            memory[current_position.y][current_position.x].pitProb = 100.0;
+            memory[current_position.y][current_position.x].wumpusProb = 0;
+            memory[current_position.y][current_position.x].updateSafety();
+        }
     }
 
-    private void updateAdjacentCells() {
+    private void updateAdjacentCellsProbability() {
         Cell current_cell = memory[current_position.y][current_position.x];
 
         if(!current_cell.breeze && !current_cell.stench)
