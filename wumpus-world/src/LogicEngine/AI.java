@@ -8,29 +8,18 @@ public class AI {
         this.kb = new KnowledgeBase();
     }
 
+    public AI (KnowledgeBase new_base) {
+        this.kb = new_base;
+    }
+
     public void observe(int row_num, int col_num, Cell visited_cell) {
         kb.updateCurrentPosition(row_num, col_num);
         kb.updateVisitedWorldState(visited_cell);
     }
 
-    private void infer() {
-        Point position = kb.current_position;
-
-        if(position.y > 0) {}
-        if(position.y < 9) {}
-        if(position.x > 0) {}
-        if(position.x < 9) {}
-
-    }
-
-    private void inferForWumpus(Point position) {
-
-    }
-
     public String decideMove() {
         String decision = "";
         int predicted_score = Integer.MIN_VALUE;
-        Cell current_cell = kb.getCurrentCell();
 
         if(kb.current_position.y > 0) {
             Cell neighbour = kb.getCell(kb.current_position.y-1,kb.current_position.x);
@@ -74,7 +63,7 @@ public class AI {
             else if (cell.wumpus || cell.pit) score -= 1000;
             else if (cell.safe) score -= 1;
         } else {
-
+            if (cell.safe) score += 1;
         }
         return score;
     }
