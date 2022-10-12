@@ -70,7 +70,7 @@ public class AI {
     private int calculateScore(Cell cell) {
         int score = this.score;
         if(cell.visited) {
-            if (cell.gold) score += 100000;
+            if (cell.gold) score += Integer.MAX_VALUE;
             else if (cell.wumpus || cell.pit) score -= 1000;
             else if (cell.safe) score -= 1;
         } else {
