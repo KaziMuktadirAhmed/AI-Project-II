@@ -111,6 +111,7 @@ public class Game {
         setInitialPosition();
         while (run_game) {
             showWorld();
+            ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
             System.out.print("Input move or type exit to exit: ");
             String input = scan_inpt.next();
             move(input);
