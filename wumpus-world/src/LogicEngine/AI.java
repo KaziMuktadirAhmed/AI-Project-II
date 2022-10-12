@@ -16,5 +16,28 @@ public class AI {
 
     }
 
+    private void updateSafeAdjacentCell() {
+        
+    }
+
     public void decideMove() {}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
