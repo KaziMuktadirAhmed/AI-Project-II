@@ -2,8 +2,7 @@ package LogicEngine;
 
 public class AI {
     private final KnowledgeBase kb;
-    private Cell currrent_cell;
-    private int score = 0;
+    private int score = 100;
 
     public AI () {
         this.kb = new KnowledgeBase();
@@ -28,13 +27,14 @@ public class AI {
 
     }
 
-    public void decideMove(Cell cell) {
+    public void decideMove() {
+        Cell current_cell = kb.getCurrentCell();
 
     }
 
     private int calculateScore(Cell cell) {
         int score = this.score;
-        if(cell.gold)                     score += 1000;
+        if(cell.gold)                     score += 100000;
         else if (cell.wumpus || cell.pit) score -= 1000;
         else if (cell.safe)               score -= 1;
         return score;
