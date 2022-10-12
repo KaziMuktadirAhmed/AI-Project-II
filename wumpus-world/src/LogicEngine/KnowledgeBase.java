@@ -49,12 +49,12 @@ public class KnowledgeBase {
         }
 
         if (cell_col > 0) {
-            cell_probability += memory[cell_row][cell_col -1].safetyProb;
+            cell_probability += memory[cell_row][cell_col - 1].safetyProb;
             count++;
         }
 
         if(cell_col < 9) {
-            cell_probability += memory[cell_row][cell_col +1].safetyProb;
+            cell_probability += memory[cell_row][cell_col + 1].safetyProb;
             count++;
         }
         cell_probability /= count;
