@@ -29,7 +29,7 @@ public class KnowledgeBase {
     private void updateCurrentCellSafetyProbability() {
         if (memory[current_position.y][current_position.x].safe)
             memory[current_position.y][current_position.x].safetyProb = 100.0;
-        else if(memory[current_position.y][current_position.x].wumpus){
+        else if(memory[current_position.y][current_position.x].wumpus) {
             memory[current_position.y][current_position.x].wumpusProb = 100.0;
             memory[current_position.y][current_position.x].pitProb = 0;
             memory[current_position.y][current_position.x].updateSafety();
