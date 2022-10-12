@@ -105,7 +105,7 @@ public class Game {
         output_file.close();
     }
 
-    public void run() throws IOException {
+    public void run() {
         Scanner scan_inpt = new Scanner(System.in);
         boolean run_game = true;
         setInitialPosition();
@@ -133,7 +133,7 @@ public class Game {
         game_world[player_position.y][player_position.x].visited = true;
     }
 
-    private void move(String input) throws IOException {
+    private void move(String input) {
         switch (input.toLowerCase()) {
             case "up" -> {
                 if (player_position.y > 0) player_position.y--;

@@ -13,7 +13,7 @@ public class AI {
     }
 
     private void inferCell() {
-        
+
     }
 
     public void decideMove() {}
