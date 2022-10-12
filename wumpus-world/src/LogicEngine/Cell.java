@@ -26,5 +26,6 @@ public class Cell {
         if(wumpusProb > pitProb) safetyProb = 100 - wumpusProb;
         else                     safetyProb = 100 - pitProb;
         if(safetyProb == 100)    safe = true;
+        if(wumpusProb == 100 && pitProb == 100) safe = false;
     }
 }
