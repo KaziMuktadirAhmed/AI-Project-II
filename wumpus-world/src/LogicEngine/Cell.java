@@ -23,9 +23,8 @@ public class Cell {
     }
 
     public void updateSafety() {
-        if(wumpusProb > pitProb)
-            safetyProb = 100 - wumpusProb;
-        else
-            safetyProb = 100 - pitProb;
+        if(wumpusProb > pitProb) safetyProb = 100 - wumpusProb;
+        else                     safetyProb = 100 - pitProb;
+        if(safetyProb == 100)    safe = true;
     }
 }

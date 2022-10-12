@@ -63,7 +63,7 @@ public class AI {
                 decision = "RIGHT";
             }
         }
-        
+
         return decision;
     }
 
