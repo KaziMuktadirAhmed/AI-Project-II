@@ -9,6 +9,8 @@ public class Cell {
     public boolean pit = false;
     public boolean gold = false;
     public double safetyProb = 50.0;
+    public double wumpusProb = 50.0;
+    public double pitProb = 50.0;
 
     public void copyCell(Cell c) {
         this.visited = c.visited;
@@ -19,5 +21,12 @@ public class Cell {
         this.pit = c.pit;
         this.gold = c.gold;
         this.safetyProb = c.safetyProb;
+    }
+
+    public void updateSafety() {
+        if(wumpusProb > pitProb)
+            safetyProb = 100 - wumpusProb;
+        else
+            safetyProb = 100 - pitProb;
     }
 }

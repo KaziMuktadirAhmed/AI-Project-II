@@ -49,12 +49,27 @@ public class KnowledgeBase {
             memory[current_position.y+1][current_position.x].safe = true;
         if(current_position.x > 0)
             memory[current_position.y][current_position.x-1].safe = true;
-        if(current_position.y < 9)
+        if(current_position.x < 9)
             memory[current_position.y][current_position.x+1].safe = true;
     }
 
     private void currentCellStench() {
-
+        if(current_position.y > 0) {
+            memory[current_position.y - 1][current_position.x].wumpusProb += 12.5;
+            memory[current_position.y - 1][current_position.x].updateSafety();
+        }
+        if(current_position.y < 9){
+            memory[current_position.y + 1][current_position.x].wumpusProb += 12.5;
+            memory[current_position.y + 1][current_position.x].updateSafety();
+        }
+        if(current_position.x > 0){
+            memory[current_position.y][current_position.x - 1].wumpusProb += 12.5;
+            memory[current_position.y][current_position.x - 1].updateSafety();
+        }
+        if(current_position.x < 9){
+            memory[current_position.y][current_position.x + 1].wumpusProb += 12.5;
+            memory[current_position.y][current_position.x + 1].updateSafety();
+        }
     }
 
     private double calculateAvgProbability(int cell_row, int cell_col) {
