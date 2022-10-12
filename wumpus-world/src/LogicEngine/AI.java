@@ -74,7 +74,7 @@ public class AI {
             else if (cell.wumpus || cell.pit) score -= 1000;
             else if (cell.safe) score -= 1;
         } else {
-            
+
         }
         return score;
     }
