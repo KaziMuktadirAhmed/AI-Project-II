@@ -37,9 +37,10 @@ public class KnowledgeBase {
 
         if(!current_cell.breeze && !current_cell.stench)
             allSafeCellAdjacent();
-        if(current_cell.stench) {
-
-        }
+        if(current_cell.stench)
+            currentCellStench();
+        if(current_cell.breeze)
+            currentCellBreeze();
     }
 
     private void allSafeCellAdjacent() {
@@ -68,6 +69,25 @@ public class KnowledgeBase {
         }
         if(current_position.x < 9){
             memory[current_position.y][current_position.x + 1].wumpusProb += 12.5;
+            memory[current_position.y][current_position.x + 1].updateSafety();
+        }
+    }
+
+    private void currentCellBreeze() {
+        if(current_position.y > 0) {
+            memory[current_position.y - 1][current_position.x].pitProb += 12.5;
+            memory[current_position.y - 1][current_position.x].updateSafety();
+        }
+        if(current_position.y < 9){
+            memory[current_position.y + 1][current_position.x].pitProb += 12.5;
+            memory[current_position.y + 1][current_position.x].updateSafety();
+        }
+        if(current_position.x > 0){
+            memory[current_position.y][current_position.x - 1].pitProb += 12.5;
+            memory[current_position.y][current_position.x - 1].updateSafety();
+        }
+        if(current_position.x < 9){
+            memory[current_position.y][current_position.x + 1].pitProb += 12.5;
             memory[current_position.y][current_position.x + 1].updateSafety();
         }
     }
