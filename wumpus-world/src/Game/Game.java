@@ -217,7 +217,7 @@ public class Game {
                     else if (game_world[i][j].breeze) line += "Br";
                     else if (game_world[i][j].wumpus) line += "Wm";
                     else if (game_world[i][j].pit)    line += "Pt";
-                    else                              line += "Sf";
+                    else                              line += "No";
                 }
                 else                            line += "Un";
                 if(game_world[i][j].wumpus)     line += "W";
