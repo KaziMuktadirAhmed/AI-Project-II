@@ -26,6 +26,10 @@ public class AI {
         if(cell.pit || cell.wumpus) this.score = Integer.MIN_VALUE;
     }
 
+    public int getScore() {
+        return this.score;
+    }
+
     public String decideMove() {
         String decision = "";
         int predicted_score = Integer.MIN_VALUE;

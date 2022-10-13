@@ -114,6 +114,7 @@ public class Game {
             ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
             String ai_move = ai.decideMove();
             System.out.println("Ai move: " + ai_move);
+            System.out.println("Ai score: " + ai.getScore());
             String input = scan_inpt.next();
             move(ai_move);
             if(input.equalsIgnoreCase("exit")) run_game = false;
