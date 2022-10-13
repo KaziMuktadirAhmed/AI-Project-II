@@ -1,7 +1,7 @@
 package LogicEngine;
 
 public class AI {
-    private final KnowledgeBase kb;
+    public KnowledgeBase kb;
     private int score = 100; // Initial score
 
     public AI () {

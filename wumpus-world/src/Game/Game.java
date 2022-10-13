@@ -121,6 +121,7 @@ public class Game {
             if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
                 showWorld();
                 System.out.println("DEATH");
+                System.out.println("visited status: " + game_world[player_position.y][player_position.x].visited);
                 respawn(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
 //                run_game = false;
             } else if (game_world[player_position.y][player_position.x].gold) {
@@ -219,11 +220,11 @@ public class Game {
             for (int j = 0; j < 10; j++) {
                 if(player_position.x == j && player_position.y == i) line += "A";
                 if(game_world[i][j].visited) {
-                    if(game_world[i][j].stench)       line += "St|";
-                    else if (game_world[i][j].breeze) line += "Br|";
-                    else if (game_world[i][j].wumpus) line += "Wm|";
-                    else if (game_world[i][j].pit)    line += "Pt|";
-                    else if (game_world[i][j].gold)   line += "Go|";
+                    if(ai.kb.memory[i][j].stench)       line += "St|";
+                    else if (ai.kb.memory[i][j].breeze) line += "Br|";
+                    else if (ai.kb.memory[i][j].wumpus) line += "Wm|";
+                    else if (ai.kb.memory[i][j].pit)    line += "Pt|";
+                    else if (ai.kb.memory[i][j].gold)   line += "Go|";
                     else                              line += "No|";
                 }
                 else                            line += "Un|";
