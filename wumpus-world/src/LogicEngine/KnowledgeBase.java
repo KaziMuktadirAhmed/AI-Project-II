@@ -40,11 +40,9 @@ public class KnowledgeBase {
             memory[current_position.y][current_position.x].safetyProb = 100.0;
         else if(memory[current_position.y][current_position.x].wumpus) {
             memory[current_position.y][current_position.x].wumpusProb = 100.0;
-            memory[current_position.y][current_position.x].pitProb = 0;
             memory[current_position.y][current_position.x].updateSafety();
         } else if (memory[current_position.y][current_position.x].pit) {
             memory[current_position.y][current_position.x].pitProb = 100.0;
-            memory[current_position.y][current_position.x].wumpusProb = 0;
             memory[current_position.y][current_position.x].updateSafety();
             System.out.println("died");
         }
@@ -60,33 +58,33 @@ public class KnowledgeBase {
     }
 
     private void allSafeCellAdjacent() {
-        if(current_position.y > 0)
+        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited)
             memory[current_position.y-1][current_position.x].safe = true;
-        if(current_position.y < 9)
+        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited)
             memory[current_position.y+1][current_position.x].safe = true;
-        if(current_position.x > 0)
+        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited)
             memory[current_position.y][current_position.x-1].safe = true;
-        if(current_position.x < 9)
+        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited)
             memory[current_position.y][current_position.x+1].safe = true;
     }
 
     private void noStenchCurrentCell() {
-        if(current_position.y > 0) {
+        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited) {
             memory[current_position.y - 1][current_position.x].wumpus = false;
             memory[current_position.y - 1][current_position.x].wumpusProb = 0.0;
             memory[current_position.y - 1][current_position.x].updateSafety();
         }
-        if(current_position.y < 9) {
+        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited) {
             memory[current_position.y + 1][current_position.x].wumpus = false;
             memory[current_position.y + 1][current_position.x].wumpusProb = 0.0;
             memory[current_position.y + 1][current_position.x].updateSafety();
         }
-        if(current_position.x > 0){
+        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited) {
             memory[current_position.y][current_position.x - 1].wumpus = false;
             memory[current_position.y][current_position.x - 1].wumpusProb = 0.0;
             memory[current_position.y][current_position.x - 1].updateSafety();
         }
-        if(current_position.x < 9){
+        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited) {
             memory[current_position.y][current_position.x + 1].wumpus = false;
             memory[current_position.y][current_position.x + 1].wumpusProb = 0.0;
             memory[current_position.y][current_position.x + 1].updateSafety();
@@ -94,22 +92,22 @@ public class KnowledgeBase {
     }
 
     private void noBreezeCurrentCell() {
-        if(current_position.y > 0) {
+        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited) {
             memory[current_position.y - 1][current_position.x].pit = false;
             memory[current_position.y - 1][current_position.x].pitProb = 0.0;
             memory[current_position.y - 1][current_position.x].updateSafety();
         }
-        if(current_position.y < 9) {
+        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited) {
             memory[current_position.y + 1][current_position.x].pit = false;
             memory[current_position.y + 1][current_position.x].pitProb = 0.0;
             memory[current_position.y + 1][current_position.x].updateSafety();
         }
-        if(current_position.x > 0){
+        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited){
             memory[current_position.y][current_position.x - 1].pit = false;
             memory[current_position.y][current_position.x - 1].pitProb = 0.0;
             memory[current_position.y][current_position.x - 1].updateSafety();
         }
-        if(current_position.x < 9){
+        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited){
             memory[current_position.y][current_position.x + 1].pit = false;
             memory[current_position.y][current_position.x + 1].pitProb = 0.0;
             memory[current_position.y][current_position.x + 1].updateSafety();

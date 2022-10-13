@@ -110,13 +110,15 @@ public class Game {
         boolean run_game = true;
         setInitialPosition();
         while (run_game) {
-            showWorld();
+            // showWorld();
             ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
+            showWorld();
             String ai_move = ai.decideMove();
             System.out.println("Ai move: " + ai_move);
             System.out.println("Ai score: " + ai.getScore());
             String input = scan_inpt.nextLine();
             move(ai_move);
+            // showWorld();
             if(input.equalsIgnoreCase("exit")) run_game = false;
             if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
                 showWorld();
