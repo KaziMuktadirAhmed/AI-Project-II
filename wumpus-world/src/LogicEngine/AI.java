@@ -51,7 +51,6 @@ public class AI {
     public String decideMove() {
         String decision = "";
         int predicted_score = Integer.MIN_VALUE;
-        System.out.println("Position row " + kb.current_position.y + " col " + kb.current_position.x );
         if(kb.current_position.y > 0) {
             Cell neighbour = kb.getCell(kb.current_position.y-1,kb.current_position.x);
             if(calculateScore(neighbour) > predicted_score && neighbour.numTimesVisited < 20) {

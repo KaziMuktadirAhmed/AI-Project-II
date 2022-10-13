@@ -224,12 +224,13 @@ public class Game {
             for (int j = 0; j < 10; j++) {
                 if(player_position.x == j && player_position.y == i) line += "A";
                 if(game_world[i][j].visited) {
-                    if(ai.kb.memory[i][j].stench)       line += "St|";
-                    else if (ai.kb.memory[i][j].breeze) line += "Br|";
-                    else if (ai.kb.memory[i][j].wumpus) line += "Wm|";
-                    else if (ai.kb.memory[i][j].pit)    line += "Pt|";
-                    else if (ai.kb.memory[i][j].gold)   line += "Go|";
-                    else                              line += "No|";
+                    if(ai.kb.memory[i][j].breeze && ai.kb.memory[i][j].stench)  line += "BS|";
+                    else if (ai.kb.memory[i][j].breeze)                         line += "Br|";
+                    else if (ai.kb.memory[i][j].stench)                         line += "BS|";
+                    else if (ai.kb.memory[i][j].wumpus)                         line += "Wm|";
+                    else if (ai.kb.memory[i][j].pit)                            line += "Pt|";
+                    else if (ai.kb.memory[i][j].gold)                           line += "Go|";
+                    else                                                        line += "No|";
                 }
                 else                            line += "Un|";
                 if(game_world[i][j].wumpus)     line += "W";
