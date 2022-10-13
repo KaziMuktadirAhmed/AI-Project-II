@@ -20,7 +20,7 @@ public class AI {
 
     private void updateScore(Cell cell) {
         Cell memory = kb.getCurrentCell();
-        if(memory.visited)          this.score -= (10 * memory.numTimesVisited);
+        if(memory.visited)          this.score -= (5 * memory.numTimesVisited);
         else                        this.score += 1;
         if(cell.gold)               this.score = Integer.MAX_VALUE;
         if(cell.pit || cell.wumpus) this.score = Integer.MIN_VALUE;
@@ -78,7 +78,7 @@ public class AI {
         if(cell.visited) {
             if (cell.gold) score = Integer.MAX_VALUE;
             else if (cell.wumpus || cell.pit) score = Integer.MIN_VALUE;
-            else if (cell.safe) score -= (10 * cell.numTimesVisited);
+            else if (cell.safe) score -= (5 * cell.numTimesVisited);
         } else {
             if (cell.safe) score += 1;
             else           score -= (100 - cell.safetyProb);
