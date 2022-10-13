@@ -223,6 +223,7 @@ public class Game {
                     else if (game_world[i][j].breeze) line += "Br|";
                     else if (game_world[i][j].wumpus) line += "Wm|";
                     else if (game_world[i][j].pit)    line += "Pt|";
+                    else if (game_world[i][j].gold)   line += "Go|";
                     else                              line += "No|";
                 }
                 else                            line += "Un|";
