@@ -1,6 +1,7 @@
 package LogicEngine;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class AI {
     public KnowledgeBase kb;
@@ -55,7 +56,7 @@ public class AI {
         System.out.println("Position row " + kb.current_position.y + " col " + kb.current_position.x );
         if(kb.current_position.y > 0) {
             Cell neighbour = kb.getCell(kb.current_position.y-1,kb.current_position.x);
-            if(calculateScore(neighbour) > predicted_score) {
+            if(calculateScore(neighbour) > predicted_score && neighbour.numTimesVisited < 20) {
                 predicted_score = calculateScore(neighbour);
                 decision = "UP";
             }
@@ -64,7 +65,7 @@ public class AI {
 
         if(kb.current_position.y < 9) {
             Cell neighbour = kb.getCell(kb.current_position.y+1,kb.current_position.x);
-            if(calculateScore(neighbour) > predicted_score) {
+            if(calculateScore(neighbour) > predicted_score && neighbour.numTimesVisited < 20) {
                 predicted_score = calculateScore(neighbour);
                 decision = "DOWN";
             }
@@ -73,7 +74,7 @@ public class AI {
 
         if(kb.current_position.x > 0) {
             Cell neighbour = kb.getCell(kb.current_position.y,kb.current_position.x-1);
-            if(calculateScore(neighbour) > predicted_score) {
+            if(calculateScore(neighbour) > predicted_score && neighbour.numTimesVisited < 20) {
                 predicted_score = calculateScore(neighbour);
                 decision = "LEFT";
             }
@@ -82,11 +83,18 @@ public class AI {
 
         if(kb.current_position.x < 9) {
             Cell neighbour = kb.getCell(kb.current_position.y,kb.current_position.x+1);
-            if(calculateScore(neighbour) > predicted_score) {
+            if(calculateScore(neighbour) > predicted_score && neighbour.numTimesVisited < 20) {
                 predicted_score = calculateScore(neighbour);
                 decision = "RIGHT";
             }
             System.out.println("RIGHT Predicted score: " + calculateScore(neighbour));
+        }
+        int random = (int) (Math.random()*4);
+        if(decision.equals("")) {
+            if (random == 0) decision = "UP";
+            else if (random == 1) decision = "DOWN";
+            else if (random == 2) decision = "LEFT";
+            else if (random == 3) decision = "RIGHT";
         }
         path.add(decision);
         return decision;
