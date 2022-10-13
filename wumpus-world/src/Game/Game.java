@@ -115,19 +115,25 @@ public class Game {
             String ai_move = ai.decideMove();
             System.out.println("Ai move: " + ai_move);
             System.out.println("Ai score: " + ai.getScore());
-            String input = scan_inpt.next();
+            String input = scan_inpt.nextLine();
             move(ai_move);
             if(input.equalsIgnoreCase("exit")) run_game = false;
             if(game_world[player_position.y][player_position.x].pit || game_world[player_position.y][player_position.x].wumpus) {
                 showWorld();
                 System.out.println("DEATH");
-                run_game = false;
+                respawn(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
+//                run_game = false;
             } else if (game_world[player_position.y][player_position.x].gold) {
                 showWorld();
                 System.out.println("WIN");
                 run_game = false;
             }
         }
+    }
+
+    private void respawn(int row, int col, Cell death_place) {
+        ai.die(row, col, death_place);
+        setInitialPosition();
     }
 
     private void setInitialPosition() {
@@ -213,13 +219,13 @@ public class Game {
             for (int j = 0; j < 10; j++) {
                 if(player_position.x == j && player_position.y == i) line += "A";
                 if(game_world[i][j].visited) {
-                    if(game_world[i][j].stench)       line += "St";
-                    else if (game_world[i][j].breeze) line += "Br";
-                    else if (game_world[i][j].wumpus) line += "Wm";
-                    else if (game_world[i][j].pit)    line += "Pt";
-                    else                              line += "No";
+                    if(game_world[i][j].stench)       line += "St|";
+                    else if (game_world[i][j].breeze) line += "Br|";
+                    else if (game_world[i][j].wumpus) line += "Wm|";
+                    else if (game_world[i][j].pit)    line += "Pt|";
+                    else                              line += "No|";
                 }
-                else                            line += "Un";
+                else                            line += "Un|";
                 if(game_world[i][j].wumpus)     line += "W";
                 else if (game_world[i][j].pit)  line += "P";
                 else if (game_world[i][j].gold) line += "G";

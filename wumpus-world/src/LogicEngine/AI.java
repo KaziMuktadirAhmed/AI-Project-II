@@ -18,6 +18,12 @@ public class AI {
         kb.updateVisitedWorldState(visited_cell);
     }
 
+    public void die(int row, int col, Cell death_cell) {
+        kb.updateCurrentPosition(row, col);
+        kb.updateVisitedWorldState(death_cell);
+        this.score = 100;
+    }
+
     private void updateScore(Cell cell) {
         Cell memory = kb.getCurrentCell();
         if(memory.visited)          this.score -= (5 * memory.numTimesVisited);
