@@ -1,8 +1,6 @@
 package LogicEngine;
 
 import java.util.ArrayList;
-import java.util.Random;
-
 public class AI {
     public KnowledgeBase kb;
     private int score = 100; // Initial score

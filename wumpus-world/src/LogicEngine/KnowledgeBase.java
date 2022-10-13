@@ -44,7 +44,7 @@ public class KnowledgeBase {
         } else if (memory[current_position.y][current_position.x].pit) {
             memory[current_position.y][current_position.x].pitProb = 100.0;
             memory[current_position.y][current_position.x].updateSafety();
-            System.out.println("died");
+//            System.out.println("died");
         }
     }
 
