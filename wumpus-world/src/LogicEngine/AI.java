@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class AI {
     public KnowledgeBase kb;
     private int score = 100; // Initial score
-    private ArrayList<String> path = new ArrayList<>();
     public boolean death_flag = false;
 
     public AI () {
@@ -25,16 +24,16 @@ public class AI {
         kb.updateCurrentPosition(row, col);
         kb.updateVisitedWorldState(death_cell);
         death_flag = true;
-        path.remove(path.size()-1);
+//        path.remove(path.size()-1);
         this.score = 100;
     }
 
-    public String getMoveFromPath() {
-        String move = path.get(0);
-        path.remove(0);
-        if(path.size() == 0) death_flag = false;
-        return move;
-    }
+//    public String getMoveFromPath() {
+//        String move = path.get(0);
+//        path.remove(0);
+//        if(path.size() == 0) death_flag = false;
+//        return move;
+//    }
 
     private void updateScore(Cell cell) {
         Cell memory = kb.getCurrentCell();
@@ -93,7 +92,7 @@ public class AI {
             else if (random == 2) decision = "LEFT";
             else if (random == 3) decision = "RIGHT";
         }
-        path.add(decision);
+//        path.add(decision);
         return decision;
     }
 

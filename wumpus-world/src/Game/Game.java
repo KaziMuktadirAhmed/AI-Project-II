@@ -59,20 +59,20 @@ public class Game {
 
     private void updateAdjacentCell(int row_num, int col_num, Cell cell) {
         if(row_num > 0) {
-            game_world[row_num - 1][col_num].stench = cell.wumpus;
-            game_world[row_num - 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num - 1][col_num].stench = cell.wumpus;
+            if(cell.pit)    game_world[row_num - 1][col_num].breeze = cell.pit;
         }
         if(row_num < 9) {
-            game_world[row_num + 1][col_num].stench = cell.wumpus;
-            game_world[row_num + 1][col_num].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num + 1][col_num].stench = cell.wumpus;
+            if(cell.pit)    game_world[row_num + 1][col_num].breeze = cell.pit;
         }
         if(col_num > 0) {
-            game_world[row_num][col_num - 1].stench = cell.wumpus;
-            game_world[row_num][col_num - 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num - 1].stench = cell.wumpus;
+            if(cell.pit)    game_world[row_num][col_num - 1].breeze = cell.pit;
         }
         if(col_num < 9) {
-            game_world[row_num][col_num + 1].stench = cell.wumpus;
-            game_world[row_num][col_num + 1].breeze = cell.pit;
+            if(cell.wumpus) game_world[row_num][col_num + 1].stench = cell.wumpus;
+            if(cell.pit)    game_world[row_num][col_num + 1].breeze = cell.pit;
         }
     }
 
@@ -111,11 +111,9 @@ public class Game {
         setInitialPosition();
         while (run_game) {
             String ai_move = "";
-            if(ai.death_flag) ai_move = ai.getMoveFromPath();
-            else {
-                ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
-                ai_move = ai.decideMove();
-            }
+            ai.observe(player_position.y, player_position.x, game_world[player_position.y][player_position.x]);
+            ai_move = ai.decideMove();
+
             showWorld();
             System.out.println("Ai move: " + ai_move);
             System.out.println("Ai score: " + ai.getScore());
