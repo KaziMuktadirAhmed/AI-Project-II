@@ -8,6 +8,7 @@ public class Cell {
     public boolean wumpus = false;
     public boolean pit = false;
     public boolean gold = false;
+    public int numTimesVisited = 0;
     public double safetyProb = 50.0;
     public double wumpusProb = 50.0;
     public double pitProb = 50.0;

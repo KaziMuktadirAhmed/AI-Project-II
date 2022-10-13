@@ -30,6 +30,7 @@ public class KnowledgeBase {
 
     public void updateVisitedWorldState(Cell new_cell) {
         this.memory[current_position.y][current_position.x].copyCell(new_cell);
+        this.memory[current_position.y][current_position.x].numTimesVisited++;
         updateCurrentCellSafetyProbability();
         updateAdjacentCellsProbability();
     }
