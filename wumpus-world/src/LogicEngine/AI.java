@@ -84,7 +84,7 @@ public class AI {
         if(cell.visited) {
             if (cell.gold) score = Integer.MAX_VALUE;
             else if (cell.wumpus || cell.pit) score = Integer.MIN_VALUE;
-            else if (cell.safe) score -= (5 * cell.numTimesVisited);
+            else if (cell.safe) score -= (2 * cell.numTimesVisited);
         } else {
             if (cell.safe) score += 1;
             else           score -= (100 - cell.safetyProb);
