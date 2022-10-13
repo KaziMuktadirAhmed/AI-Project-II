@@ -33,13 +33,14 @@ public class AI {
     public String decideMove() {
         String decision = "";
         int predicted_score = Integer.MIN_VALUE;
-
+        System.out.println("Position row " + kb.current_position.y + " col " + kb.current_position.x );
         if(kb.current_position.y > 0) {
             Cell neighbour = kb.getCell(kb.current_position.y-1,kb.current_position.x);
             if(calculateScore(neighbour) > predicted_score) {
                 predicted_score = calculateScore(neighbour);
                 decision = "UP";
             }
+            System.out.println("UP Predicted score: " + calculateScore(neighbour));
         }
 
         if(kb.current_position.y < 9) {
@@ -48,6 +49,7 @@ public class AI {
                 predicted_score = calculateScore(neighbour);
                 decision = "DOWN";
             }
+            System.out.println("DOWN Predicted score: " + calculateScore(neighbour));
         }
 
         if(kb.current_position.x > 0) {
@@ -56,14 +58,16 @@ public class AI {
                 predicted_score = calculateScore(neighbour);
                 decision = "LEFT";
             }
+            System.out.println("LEFT Predicted score: " + calculateScore(neighbour));
         }
 
-        if(kb.current_position.y < 9) {
+        if(kb.current_position.x < 9) {
             Cell neighbour = kb.getCell(kb.current_position.y,kb.current_position.x+1);
             if(calculateScore(neighbour) > predicted_score) {
                 predicted_score = calculateScore(neighbour);
                 decision = "RIGHT";
             }
+            System.out.println("RIGHT Predicted score: " + calculateScore(neighbour));
         }
 
         return decision;
