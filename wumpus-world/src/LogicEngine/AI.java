@@ -26,6 +26,7 @@ public class AI {
         kb.updateCurrentPosition(row, col);
         kb.updateVisitedWorldState(death_cell);
         death_flag = true;
+        path.remove(path.size()-1);
         this.score = 100;
     }
 
