@@ -212,8 +212,14 @@ public class Game {
             String line = "";
             for (int j = 0; j < 10; j++) {
                 if(player_position.x == j && player_position.y == i) line += "A";
-                if(game_world[i][j].visited)    line += "#";
-                else                            line += "0";
+                if(game_world[i][j].visited) {
+                    if(game_world[i][j].stench)       line += "St";
+                    else if (game_world[i][j].breeze) line += "Br";
+                    else if (game_world[i][j].wumpus) line += "Wm";
+                    else if (game_world[i][j].pit)    line += "Pt";
+                    else                              line += "Sf";
+                }
+                else                            line += "Un";
                 if(game_world[i][j].wumpus)     line += "W";
                 else if (game_world[i][j].pit)  line += "P";
                 else if (game_world[i][j].gold) line += "G";
