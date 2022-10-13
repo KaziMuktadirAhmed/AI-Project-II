@@ -44,7 +44,6 @@ public class KnowledgeBase {
         } else if (memory[current_position.y][current_position.x].pit) {
             memory[current_position.y][current_position.x].pitProb = 100.0;
             memory[current_position.y][current_position.x].updateSafety();
-//            System.out.println("died");
         }
     }
 
@@ -58,13 +57,13 @@ public class KnowledgeBase {
     }
 
     private void allSafeCellAdjacent() {
-        if(current_position.y > 0 && !memory[current_position.y - 1][current_position.x].visited)
+        if(current_position.y > 0)
             memory[current_position.y-1][current_position.x].safe = true;
-        if(current_position.y < 9 && !memory[current_position.y + 1][current_position.x].visited)
+        if(current_position.y < 9)
             memory[current_position.y+1][current_position.x].safe = true;
-        if(current_position.x > 0 && !memory[current_position.y][current_position.x - 1].visited)
+        if(current_position.x > 0)
             memory[current_position.y][current_position.x-1].safe = true;
-        if(current_position.x < 9 && !memory[current_position.y][current_position.x + 1].visited)
+        if(current_position.x < 9)
             memory[current_position.y][current_position.x+1].safe = true;
     }
 
@@ -131,6 +130,33 @@ public class KnowledgeBase {
             memory[current_position.y][current_position.x + 1].wumpusProb += 12.5;
             memory[current_position.y][current_position.x + 1].updateSafety();
         }
+    }
+
+    private void updateAdjacentNeibourWumpus(int row, int col) {
+        int hasWumpus = -1;
+    }
+
+    private void checkUpperNeighbourWumpus(int row, int col) {
+        int u = -2,d = -2,l = -2,r = - 2;
+        if(row > 0) {
+            if(memory[row-1][col].visited) {
+                if (memory[row - 1][col].stench) u = 1;
+                else u = 0;
+            }
+        } else u = 1;
+        if(row < 9) {
+            if(memory[row+1][col].stench) d = 1;
+            else                          d = 0;
+        } else d = 1;
+        if(col > 0) {
+            if(memory[row][col-1].stench) l = 1;
+            else                          l = 0;
+        } else l = 1;
+        if(col < 9) {
+            if(memory[row+1][col].stench) r = 1;
+            else                          r = 0;
+        } else r = 1;
+//        if(u*d*l*r == 0)
     }
 
     private void currentCellBreeze() {
