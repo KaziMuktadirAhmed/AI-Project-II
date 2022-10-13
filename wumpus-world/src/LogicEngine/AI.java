@@ -105,7 +105,7 @@ public class AI {
             else if (cell.wumpus || cell.pit) score = Integer.MIN_VALUE;
             else if (cell.safe) score -= (2 * cell.numTimesVisited);
         } else {
-            if (cell.safe) score += 1;
+            if (cell.safe) score += 10000;
             else           score -= (100 - cell.safetyProb);
         }
         return score;
